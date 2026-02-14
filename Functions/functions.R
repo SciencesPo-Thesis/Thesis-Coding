@@ -100,7 +100,7 @@ get_coefplot <- function(dataframe, colnumber = 3) {
 
 
 ##### Define function for discontinuity plots for single outcome #####
-get_discontinuityplot <- function(dataframe, outcome = "media_index", outcome_name = "Media Attitudes", colnumber = 2) { # arguments:
+get_discontinuityplot <- function(dataframe, outcome = "liberal_index", outcome_name = "Liberal Attitudes", colnumber = 2) { # arguments:
   # dataframe
   # the outcome of interest (specific index)
   # a string referring to the outcome name to be printed
