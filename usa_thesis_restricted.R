@@ -745,12 +745,12 @@ rdd_liberal_mc <- mc_draws %>%
 ## Plot for Monte Carlo Simulations
 ggplot(mc_draws, aes(x = estimate)) +
   geom_histogram(aes(y = after_stat(density)),
-    bins = 60,
+    bins = 120,
     fill = "forestgreen", color = "white", alpha = 0.8
   ) +
   stat_function(
     fun = dnorm,
-    args = list(mean = mean(mc_draws$estimate), sd = sd(mc_draws$estimate)),
+    args = list(mean = median(mc_draws$estimate), sd = sd(mc_draws$estimate)),
     color = "orchid4", linewidth = 1
   ) +
   geom_vline(xintercept = mean(mc_draws$estimate), color = "red", linewidth = 0.5) +
