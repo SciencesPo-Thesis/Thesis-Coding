@@ -1,0 +1,160 @@
+---
+title: "Thesis Structure"
+author: "Nikolaos Vichos"
+format: html
+editor: visual
+bibliography: references.bib
+self-contained: true
+---
+
+## Chapter 1: Introduction & Literature Review *(flip existing order)*
+
+1.  Liberal Democracy and Liberal Democratic Norms
+    -   Defining liberal democracy
+
+    -   Democratic backsliding, elctoral/illiberal democracy and populism, undemocratic liberalism
+
+    -   Liberal democracy and the radical right
+
+    -   Public support for liberal democratic norms (needs the most work)
+
+        -   Why public support matters? Linking public support for liberal democratic norms with democratic backsliding.
+
+        -   Trickling down of liberal democratic norms: from elites to citizens. Bring in framework by @druckman2024 combining elites, societal actors, and citizens as the link
+
+        -   Beyond trickling-down effects—why might citizens turn against democratic norms (mention papers like @graham2020, @gidengil2022, @braley2023)
+
+        -   Affective polarization and public support for liberal democratic norms: outline not only link between the two but also recent trends in either (see @claassen2023 or @phillips2022) showing that affective polarization and support for democracy have declined generationally)
+
+    -   2016 Toxicity and the Trump effect
+2.  Coming-of-age aspect of the thesis
+    -   Childhood and Early Adulthood as formative periods for Long-term behavior
+
+    -   Early adulthood and future political behavior
+
+        -   First-time voting and future voting habits
+
+        -   Stickiness of party identity and polarization as part of political socialization (e.g., @tyler2023)
+
+## Chapter 2: Theoretical Framework and Hypotheses
+
+1.  Broader framework: coming-of-age under "toxic," polarized, norm-questioning elections leads to lower long-term support for democratic norms
+    -   "Toxic" and politicized campaign characterized by norm-questioning rhetoric by elites –\>
+
+    -   affective polarization –\>
+
+    -   expectation that out-partisans will be willing to violate democratic norms –\>
+
+    -   Greater willingness to violate undemocratic norms or support leaders who will –\>
+
+    -   long-term lower support of liberal democratic norms due to early adulthood "stickiness"
+2.  Partisan sensitivity to political context: why the effect will be stronger for non-independents
+3.  Asymmetric sensitivity between partisans: why Republicans/conservatives are more likely to turn abainst democratic norms.
+4.  Beyond simple support for democratic norms: willingness to hold leaders accountable.
+    -   Democratic norms: Are partisans whose party is in power more or less willing to support democratic norms? Is this stronger among those who "came of age" under Trump?
+
+    -   Government performance: Are partisans whose party is in power more or less strict of their government leader's performance, and is this gap stronger among those who "came of age" under Trump? (use of objective indicators along with assessment performance)
+
+    -   Differences between partisans/independents/republicans/democrats will be part of exploarotry analysis
+
+## Chapter 3: Data and methodology
+
+### Overview
+
+1.  Data (still need to decide on ANES and/or PRL data; the latter has great sample size, with over 160 waves between 2022 and 2026)
+2.  All analyses follow a two-step design.
+    -   Cohort analysis (observational) compares respondents who came of age politically before vs. after 2016, establishing baseline differences in democratic norm support. This can be estimated from a single cross-section (ANES), but the PRL's 160+ weekly waves enable tests of long-run stability of these attitudes.
+
+    -   RDD (causal) uses a cutoff at birth year November 1994 and is run on both the ANES (2020) and the pooled PRL data. Converging findings across both datasets and both methods provide strong evidence for the core claims.
+
+    -   Note on birth dates: The RDD requires knowing whether a respondent falls just above or below the November 1994 cutoff. The ANES includes exact birthdates, making it directly applicable. The PRL data contains only birth year: for respondents born in 1994, exact birth date will be simulated via Monte Carlo — birth month and day drawn repeatedly from a uniform distribution, `rdrobust()` run on each simulated dataset — with the mean of the sampling distribution taken as the causal effect estimate and its standard deviation as the standard error.
+
+### H1
+
+**Cohort (cross-sectional):** The basic cohort comparison regresses democratic norm support on a post-2016 cohort indicator and controls:
+
+$$Y_i = \alpha + \beta_1 \text{PostTrump}_i + \mathbf{X}_i'\gamma + \varepsilon_i$$
+
+where $\text{PostTrump}_i = 1$ if respondent $i$ first became eligible to vote in 2016 or later, and $\beta_1$ captures the average difference in norm support between cohorts.
+
+Cohort (stickiness test, PRL): With 160+ waves, the model is extended to test whether the cohort gap persists over time:
+
+$$Y_{it} = \alpha + \beta_1 \text{PostTrump}_i + \beta_2 (\text{PostTrump}_i \times t)
++ \lambda_t + \varepsilon_{it}$$
+
+where $\lambda_t$ are wave fixed effects absorbing period shocks, and $\beta_2$ tests whether the cohort gap widens ($\beta_2 < 0$), narrows ($\beta_2 > 0$), or holds stable ($\beta_2 \approx 0$) over time. A stable gap is the primary evidence for long-run stickiness.
+
+**RDD (ANES + PRL):**
+
+$$Y_i = \alpha + \tau D_i + f(X_i - c) + \varepsilon_i$$
+
+where $D_i = 1$ if born before November 1994 (first eligible 2012), $X_i$ is birth date, $c$ is the November 1994 cutoff, $f(\cdot)$ is a flexible polynomial of the centered running variable, and $\tau$ is the causal effect of first voting in 2012 vs. 2016. Run on ANES directly; on PRL via Monte Carlo for 1994 respondents. Consistent $\tau$ across datasets constitutes cross-dataset replication.
+
+### H2
+
+**Cohort (cross-sectional):** The baseline model is extended with a party interaction:
+
+$$Y_i = \alpha + \beta_1 \text{PostTrump}_i + \beta_2 \text{Partisan}_i +
+\beta_3 (\text{PostTrump}_i \times \text{Partisan}_i) + \mathbf{X}_i'\gamma +
+\varepsilon_i$$
+
+where $\text{Partisan}_i = 1$ for Republicans and Democrats and 0 for Independents. $\beta_3$ tests whether the cohort gap is larger among partisans than independents.
+
+**Cohort (stickiness test, PRL):** Rather than estimating an unwieldy triple interaction, the stickiness model from H1 is run **separately by partisan group**:
+
+$$Y_{it}^{(g)} = \alpha + \beta_1^{(g)} \text{PostTrump}_i +
+\beta_2^{(g)} (\text{PostTrump}_i \times t) + \lambda_t + \varepsilon_{it}$$
+
+for $g \in \{\text{Partisan, Independent}\}$. Comparing $\beta_2^{(g)}$ across groups reveals whether the cohort gap is more stable among partisans than independents, without requiring a triple interaction.
+
+**RDD (ANES + PRL):** `rdrobust()` is run separately for each partisan group:
+
+$$Y_i = \alpha + \tau_g D_i + f(X_i - c) + \varepsilon_i \quad
+\text{for } g \in \{\text{Partisan, Independent}\}$$
+
+$\tau_g$ is compared across groups. This is not a formal interaction test but a subset comparison. The quantity of interest is thus $\Delta\tau = \tau_P - \tau_I$
+
+### H3
+
+Similar to above but instead testing Democrats vs Republicans rather than Independents vs Partisans
+
+### H4a
+
+**Cohort (PRL):** The model tests whether norm support responds to one's party holding power, and whether this is stronger for post-Trump cohorts:
+
+$$Y_{it} = \alpha + \beta_1 \text{PostTrump}_i + \beta_2 \text{InPower}_{it} +
+\beta_3 (\text{PostTrump}_i \times \text{InPower}_{it}) + \lambda_t + \varepsilon_{it}$$
+
+where $\text{InPower}_{it} = 1$ if respondent $i$'s party controls the presidency in wave $t$. $\beta_3$ captures whether post-Trump cohorts show a larger in-power discount on democratic norm support. The ANES (single 2020 wave) cannot speak to this question.
+
+**Electoral expectations (ANES):** Anticipated electoral outcomes are incorporated here rather than in H4b, as expectations about winning or losing map directly onto in-power psychology. The model tests whether expecting one's party to win moderates norm support, and whether this is stronger for post-Trump cohorts:
+
+$$Y_i = \alpha + \beta_1 \text{PostTrump}_i + \beta_2 \text{ExpectWin}_i +
+\beta_3 (\text{PostTrump}_i \times \text{ExpectWin}_i) + \varepsilon_i$$
+
+where $\text{ExpectWin}_i = 1$ if the respondent expected their party to win. $\beta_3$ tests whether anticipated power amplifies norm violations among post-Trump cohorts specifically.
+
+**RDD (PRL):** `rdrobust()` is run separately on pre- and post-January 2025 waves:
+
+$$\tau_{\text{pre}} \quad \text{vs.} \quad \tau_{\text{post}}$$
+
+A larger discontinuity under Republican power --- particularly among Republican respondents --- would support the hypothesis.
+
+**RDD (ANES):** With exact birthdates, `rdrobust()` is run separately by electoral expectation:
+
+$$\tau_{\text{expectwin}} \quad \text{vs.} \quad \tau_{\text{expectloss}}$$
+
+### H4b (assessment of performance)
+
+Still in progress, need to figure out whether will keep and how.
+
+## Chapter 4: Results
+
+## Chapter 5: Conclusion and Discussion
+
+{{< pagebreak >}}
+
+# **Bibliography** {.unnumbered}
+
+::: {#refs}
+:::
