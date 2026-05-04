@@ -743,17 +743,27 @@ rdd_liberal_mc <- mc_draws %>%
 
 
 ## Plot for Monte Carlo Simulations
+mc_summary <- mc_draws %>%
+  group_by(sample, model) %>%
+  summarize(mean_est = mean(estimate), sd_est = sd(estimate), .groups = "drop")
+
+mc_normal_curves <- mc_draws %>%
+  group_by(sample, model) %>%
+  reframe(
+    x = seq(min(estimate), max(estimate), length.out = 300),
+    y = dnorm(x, mean = mean(estimate), sd = sd(estimate))
+  )
+
 ggplot(mc_draws, aes(x = estimate)) +
   geom_histogram(aes(y = after_stat(density)),
     bins = 120,
     fill = "forestgreen", color = "white", alpha = 0.8
   ) +
-  stat_function(
-    fun = dnorm,
-    args = list(mean = median(mc_draws$estimate), sd = sd(mc_draws$estimate)),
-    color = "orchid4", linewidth = 1
+  geom_line(
+    data = mc_normal_curves, aes(x = x, y = y),
+    color = "orchid4", linewidth = 1, inherit.aes = FALSE
   ) +
-  geom_vline(xintercept = mean(mc_draws$estimate), color = "red", linewidth = 0.5) +
+  geom_vline(data = mc_summary, aes(xintercept = mean_est), color = "red", linewidth = 0.5) +
   geom_vline(xintercept = 0, color = "gray50", linetype = "dashed") +
   facet_wrap(~ sample + model, scales = "free_y", ncol = 2) +
   labs(
