@@ -1,0 +1,5 @@
+"metric","value","note"
+"Cronbach's Alpha (raw)",0.741,"Raw (unstandardized) Cronbach's alpha across 7 ANES items"
+"Cronbach's Alpha (std)",0.781,"Standardized Cronbach's alpha across 7 ANES items"
+"n_items",7,"Number of items in the index"
+"N_respondents_complete_cases",5324,"Respondents with non-missing data on all 7 items (listwise complete cases used in factor analysis)"

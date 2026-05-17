@@ -1,0 +1,6 @@
+"item","item_label","prl_variable","loading","communality","uniqueness","item_total_r","N_nonmissing"
+"norm_judges","Respect judicial decisions (norm_judges): agree = undemocratic","norm_judges",0.743,0.552,0.448,0.645,140880
+"norm_polling","Voter access / polling restrictions (norm_polling): agree = undemocratic","norm_polling",0.718,0.516,0.484,0.614,140908
+"norm_executive","Executive orders bypassing Congress (norm_executive): agree = undemocratic","norm_executive",0.478,0.229,0.771,0.427,140886
+"norm_censorship","Government censorship of media (norm_censorship): agree = undemocratic","norm_censorship",0.648,0.419,0.581,0.566,140881
+"norm_loyalty","Respecting election results (norm_loyalty): agree = undemocratic","norm_loyalty",0.72,0.518,0.482,0.619,140927

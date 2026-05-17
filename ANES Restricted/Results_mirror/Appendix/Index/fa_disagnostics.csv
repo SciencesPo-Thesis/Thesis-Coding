@@ -1,0 +1,8 @@
+"item","item_label","anes_variable","loading","communality","uniqueness","item_total_r","N_nonmissing"
+"free_press","Free press protection (V201366): support for protecting freedom of the press","V201366",0.659,0.434,0.566,0.579,5402
+"checks_and_balances","Checks and balances (V201367): importance of checks and balances on government","V201367",0.703,0.495,0.505,0.54,5412
+"rule_of_law","Rule of law (V201368): importance that government follows laws even when inconvenient","V201368",0.627,0.394,0.606,0.474,5422
+"agree_on_facts","Agree on facts (V201369): importance of leaders agreeing on basic facts","V201369",0.563,0.317,0.683,0.422,5408
+"unitary_executive","Limits on executive power (V201372x): opposition to president acting without Congress/courts","V201372x",0.448,0.201,0.799,0.412,5389
+"journalist_access","Journalist access (V201375x): support for journalist access to government","V201375x",0.516,0.266,0.734,0.496,5390
+"media_undermined_concern","Media undermined concern (V201376): concern about politicians undermining the media","V201376",0.555,0.308,0.692,0.507,5397

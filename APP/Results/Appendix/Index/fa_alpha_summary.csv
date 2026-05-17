@@ -1,0 +1,5 @@
+"metric","value","note"
+"Cronbach's Alpha (raw)",0.792,"Raw (unstandardized) Cronbach's alpha across 5 PRL items"
+"Cronbach's Alpha (std)",0.794,"Standardized Cronbach's alpha across 5 PRL items"
+"n_items",5,"Number of items in the index"
+"N_respondents_complete_cases",137548,"Respondents with non-missing data on all 5 items (listwise complete cases used in factor analysis)"
