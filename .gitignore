@@ -3,9 +3,8 @@
 .RData
 .Ruserdata
 .claude
-.DS_Store
+*.DS_Store
 Archive.archive
-.Rproj
-
+*.Rproj 
 
 
