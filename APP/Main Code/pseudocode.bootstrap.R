@@ -1,10 +1,10 @@
 ===================================================
-  SETUP — things that never change
+  SETUP
 ===================================================
   
-  Load your data:
-  Y        = norm support scores for all people (FIXED FOREVER)
-  X_known  = running variable for non-1994-born people (FIXED FOREVER)
+  Load data:
+  Y        = norm support scores for all people (FIXED)
+  X_known  = running variable for non-1994-born people (FIXED)
   who_1994 = list of people born in 1994 (they need birth dates drawn)
   
   Set:
@@ -34,8 +34,8 @@
     X_person = 1994 + (day_of_year / 365)
   Assign to X for this person
   
-  You now have a complete X for all 10 people.
-  Y is unchanged — it's always the real survey data.
+  Complete X for all 10 people.
+  Y is unchanged (always the real survey data_
 
     --- Step 2: Run rdrobust on real Y, store point estimate ---
 
@@ -50,7 +50,7 @@
     ==============================================
 
     --- Step 3: Fit the null model on this iteration's dataset ---
-    (Do this ONCE per outer iteration, before the inner loop)
+    (ONCE per outer iteration, before the inner loop)
   
   Get bandwidth h from rdrobust result above
   
@@ -104,7 +104,7 @@
     Point estimate:
     τ_bar = mean(point_estimates)
   SE_MC = sd(point_estimates)
-  (this is your existing Monte Carlo result — unchanged)
+  (this is THE existing Monte Carlo result — unchanged)
   
   Null distribution:
     (null_estimates now contains S*B values)
